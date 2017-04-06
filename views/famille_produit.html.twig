@@ -1,0 +1,101 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Choix Famille{% endblock %}
+
+{% block content %}
+
+	<div class="well">
+
+			<form class="form-horizontal" action="{{ path('famille_produits') }}" methode="post">
+				<div class="form-group">
+
+					<label class="col-sm-4" for="familleProd">Trier par famille de produit :</label>
+
+					<div class="col-sm-6">
+						<select class="form-control" name="famille" ref="famille">
+								
+								<option value="0" >-- Sélectionner une valeur --</option>
+							{% for famille in familles %}
+								<option value="{{ famille.id }}">{{ famille.nom }}</option>
+							{% endfor %}
+						</select>
+					</div>
+
+					<button type="submit" value="ok" class="btn btn-primary">OK</button>
+
+				</div>
+
+
+			</form>
+	  
+
+	</div>
+
+
+    {% for flashMessage in app.session.flashbag.get('success') %}
+    <div class="alert alert-success">
+        {{ flashMessage }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+
+	<div class="tab-content"> 
+    <div class="tab-pane fade in active adminTable" ref="produits">
+        {% if produits %}
+        <div class="table-responsive">
+            <table class="table table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th>Nom produit</th>
+                        <th>Effet</th>
+                        <th></th>  <!-- Actions column -->
+                    </tr>
+                </thead>
+                {% for produit in produits %}
+                    <tr>
+                        <td><a class="produitTitre" href="{{   path('produit', { 'ref': produit.ref }) }}">{{ produit.nom }}</a></td>
+                        <td>{{ produit.effetTherapeutique | truncate(60) }}</td>
+                         {% if app.user and is_granted('ROLE_ADMIN') %}
+                            <td>
+                                <a href="{{ path('admin_produit_edit', { 'ref': produit.ref }) }}" class="btn btn-info btn-xs" title="Edit"><span class="glyphicon glyphicon-edit"></span></a>
+
+                                <button type="button" class="btn btn-danger btn-xs" title="Delete" data-toggle="modal" data-target="#produitDialog{{ produit.ref }}"><span class="glyphicon glyphicon-remove"></span>
+                                </button>
+
+                                <div class="modal fade" id="produitDialog{{ produit.ref }}" ref="produitDialog{{ produit.ref }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hrefden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hrefden="true">&times;</button>
+                                                <h4 class="modal-title" ref="myModalLabel">Demande de confirmation </h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                Souhaitez vous vraiment supprimer ce produit ?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                                <a href="{{ path('admin_produit_delete', { 'ref': produit.ref }) }}" class="btn btn-danger">Confirmer</a>
+                                            </div>
+                                        </div><!-- /.modal-content -->
+                                    </div><!-- /.modal-dialog -->
+                                </div><!-- /.modal -->
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% else %}
+        <div class="alert alert-warning">Pas de produits trouvés...</div>
+        {% endif %}
+        {% if app.user and is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('admin_produit_add') }}"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Add produit</button></a>
+        {% endif %}
+    </div>
+ 
+</div>
+
+
+{% endblock %}

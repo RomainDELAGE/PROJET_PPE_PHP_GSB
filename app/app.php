@@ -43,6 +43,15 @@ $app->register(new Silex\Provider\ValidatorServiceProvider());
 
 // Register services
 
+
+$app['dao.produit'] = $app->share(function ($app) {
+    return new PPE_PHP_GSB\DAO\ProduitDAO($app['db']);
+});
+
+$app['dao.famille'] = $app->share(function ($app) {
+    return new PPE_PHP_GSB\DAO\FamilleDAO($app['db']);
+});
+
 $app['dao.user'] = $app->share(function ($app) {
     return new PPE_PHP_GSB\DAO\UserDAO($app['db']);
 });

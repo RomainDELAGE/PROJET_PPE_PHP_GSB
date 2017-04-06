@@ -1,0 +1,19 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Détail produit{% endblock %}
+
+{% block content %}
+
+<div class="well">
+    <article>
+        <h2><a class="produitTitle" href="">{{ produits.nom }}</a></h2>
+        <p>{{ produits.dosage }} mg</p>
+        <p>{{ produits.prix }} €</p>
+        <p>Contre indication : {{ produits.contreIndication }}</p>
+        <p>Effet thérapeutique : {{ produits.effetTherapeutique }}</p>
+    </article>
+</div>
+
+
+<a style="float: right; margin : 1%; " class="btn btn-default" href="{{   path('famille_produits') }}"><span class="glyphicon glyphicon-menu-left"></span> Retour</a>
+{% endblock %}
