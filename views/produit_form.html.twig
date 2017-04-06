@@ -1,0 +1,97 @@
+{% extends 'layout.html.twig' %}
+{% set adminMenu = true %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{# Commentaires : formulaire de création ou de modification des produits  #}
+
+{% block content %}
+<h2 class="text-center">{{ block('title') }}</h2>
+
+
+<div class="well">
+{{ form_start(produitForm, { 'attr': {'class': 'form-horizontal'} }) }}
+    <div class="form-group">
+        {{ form_label(produitForm.nom, null, { 'label_attr':  {
+            'class': 'col-sm-4 control-label'
+        }}) }}
+        <div class="col-sm-6">
+            {{ form_errors(produitForm.nom) }}
+            {{ form_widget(produitForm.nom, { 'attr':  {
+                'class': 'form-control'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(produitForm.dosage, null, { 'label_attr':  {
+            'class': 'col-sm-4 control-label'
+        }}) }}
+        <div class="col-sm-6">
+            {{ form_errors(produitForm.dosage) }}
+            {{ form_widget(produitForm.dosage, { 'attr':  {
+                'class': 'form-control',
+                'rows': '8'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(produitForm.prix, null, { 'label_attr':  {
+            'class': 'col-sm-4 control-label'
+        }}) }}
+        <div class="col-sm-6">
+            {{ form_errors(produitForm.prix) }}
+            {{ form_widget(produitForm.prix, { 'attr':  {
+                'class': 'form-control',
+                'rows': '8'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(produitForm.contreIndication, null, { 'label_attr':  {
+            'class': 'col-sm-4 control-label'
+        }}) }}
+        <div class="col-sm-6">
+            {{ form_errors(produitForm.contreIndication) }}
+            {{ form_widget(produitForm.contreIndication, { 'attr':  {
+                'class': 'form-control',
+                'rows': '8'
+            }}) }}
+        </div>
+    </div>
+    <div class="form-group">
+        {{ form_label(produitForm.effetTherapeutique, null, { 'label_attr':  {
+            'class': 'col-sm-4 control-label'
+        }}) }}
+        <div class="col-sm-6">
+            {{ form_errors(produitForm.effetTherapeutique) }}
+            {{ form_widget(produitForm.effetTherapeutique, { 'attr':  {
+                'class': 'form-control',
+                'rows': '8'
+            }}) }}
+        </div>
+    </div>
+
+    <div class="form-group">
+        {{ form_label(produitForm.idFamille, null, { 'label_attr':  {
+            'class': 'col-sm-4 control-label'
+        }}) }}
+        <div class="col-sm-4">
+            {{ form_errors(produitForm.idFamille) }}
+            {{ form_widget(produitForm.idFamille, { 'attr':  {
+                'class': 'form-control'
+            }}) }}
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+
+        <div class="col-sm-offset-4 col-sm-6">
+         <a  class="btn btn-default" href="{{   path('famille_produits') }}">Annuler</a>
+         <input type="submit" class="btn btn-primary" value="Enregistrer" />
+        </div>
+    </div>
+{{ form_end(produitForm) }}
+</div>
+{% endblock %}

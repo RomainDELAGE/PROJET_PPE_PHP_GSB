@@ -1,3 +1,3 @@
 # PPE_PHP_GSB
 
-PPE PHP GSB.
+Support du cours OpenClassrooms "Evoluer vers une architecture PHP professionnelle".
