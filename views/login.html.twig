@@ -2,9 +2,15 @@
 
 {% block title %}
     {% if app.user %}
-    Menu
+
+    <div class="panel panel-primary col-sm-8 col-sm-offset-2 " style="margin-top: 3%; color : #337ab7;" >
+      <div class="panel-body ">
+       <img src="../ressources/logo_gsb.png" alt="logo" style="width : 20%;"  > Menu principal
+      </div>
+    </div>
+ 
     {% else %}
-    Authentication
+      <img src="../ressources/logo_gsb.png" alt="logo" style="width : 20%;"  >
     {% endif %}
 {% endblock %}
 
@@ -35,6 +41,7 @@
    
 </div>
 {% else %}
+
 <div class="well">
     <form class="form-signin form-horizontal" role="form" action="{{ path('login_check') }}" method="post">
         <div class="form-group">
