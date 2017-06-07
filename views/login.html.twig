@@ -2,20 +2,28 @@
 
 {% block title %}
     {% if app.user %}
+        Accueil
+    {% else %}
+        Authentification
+    {% endif %}
+{% endblock %}
+
+{% block menu %}
+    {% if app.user %}
 
     <div class="panel panel-primary col-sm-8 col-sm-offset-2 " style="margin-top: 3%; color : #337ab7;" >
       <div class="panel-body ">
-       <img src="../ressources/logo_gsb.png" alt="logo" style="width : 20%;"  > Menu principal
+       <img src="\PPE_PHP_GSB/PROJET_PPE_PHP_GSB/web/ressources/logo_gsb.png" alt="logo" style="width : 20%;"  > Menu principal
       </div>
     </div>
  
     {% else %}
-      <img src="../ressources/logo_gsb.png" alt="logo" style="width : 20%;"  >
+      <img src="\PPE_PHP_GSB/PROJET_PPE_PHP_GSB/web/ressources/logo_gsb.png" alt="logo" style="width : 20%;"  >
     {% endif %}
 {% endblock %}
 
 {% block content %}
-<h2 class="text-center">{{ block('title') }}</h2>
+<h2 class="text-center">{{ block('menu') }}</h2>
 {% if error %}
 <div class="alert alert-danger">
     <strong>Login failed!</strong> {{ error }}

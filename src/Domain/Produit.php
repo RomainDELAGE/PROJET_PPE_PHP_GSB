@@ -47,6 +47,13 @@ class Produit
     private $effetTherapeutique;
 
     /**
+     * Produit dateSuppression.
+     *
+     * @var date
+     */
+    private $dateSuppression;
+
+    /**
      * Produit idFamille.
      *
      * @var int
@@ -102,6 +109,14 @@ class Produit
 
     public function setEffetTherapeutique($effetTherapeutique) {
         $this->effetTherapeutique = $effetTherapeutique;
+    }
+
+    public function getDateSuppression() {
+        return $this->dateSuppression;
+    }
+
+    public function setDateSuppression($dateSuppression) {
+        $this->dateSuppression = $dateSuppression;
     }
 
     public function getIdFamille() {
