@@ -12,7 +12,7 @@ class ProduitDAO extends DAO
      * @return array une liste de tous les produits.
      */
     public function findAll() {
-        $sql = "select * from produit order by ref desc";
+        $sql = "select * from produit where dateSuppression IS Null order by ref DESC";
         $result = $this->getDb()->fetchAll($sql);
 
         // Convertit les résultat query en un array d'objets
@@ -30,7 +30,7 @@ class ProduitDAO extends DAO
          * @return array A list of produit of a famille.
          */
         public function findProduitFamille($idFam) {
-            $sql = "select * from produit where idFamille=".$idFam." order by ref desc";
+            $sql = "select * from produit where idFamille=".$idFam." AND dateSuppression IS Null order by ref DESC";
             $result = $this->getDb()->fetchAll($sql);
 
             // Convert query result to an array of domain objects
@@ -73,6 +73,7 @@ class ProduitDAO extends DAO
             'prix'=> $produit->getPrix(),
             'contreIndication'=> $produit->getContreIndication(),
             'effetTherapeutique'=> $produit->getEffetTherapeutique(),
+            'dateSuppression' => $produit->getDateSuppression(),
             'idFamille' => $produit->getIdFamille()
             );
         
@@ -93,17 +94,19 @@ class ProduitDAO extends DAO
 
 
     /**
-     * Removes an produit from the database.
+     * Ajoute une date de suppression au produit le rendant impossible à consulter.
      *
      * @param integer $id The produit id.
      */
     public function delete($ref) {
         // Delete the produit
-        $this->getDb()->delete('produit', array('ref' => $ref));
+        $produitData = array( 'dateSuppression' => date('Y-m-j') );
+
+        $this->getDb()->update('produit', $produitData, array('ref' => $ref));
     }
 
     /**
-     * Creates an produit object based on a DB row.
+     * Creates an produit object based on a DB row. La dateSuppression est Null par defaut pas besoin de l'initialiser.
      *
      * @param array $row The DB row containing Produit data.
      * @return \PPE_PHP_GSB\Domain\Produit

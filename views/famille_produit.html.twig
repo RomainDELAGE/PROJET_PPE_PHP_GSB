@@ -1,6 +1,6 @@
 {% extends "layout.html.twig" %}
 
-{% block title %}Choix Famille{% endblock %}
+{% block title %}Produits{% endblock %}
 
 {% block content %}
 
@@ -91,7 +91,7 @@
         <div class="alert alert-warning">Pas de produits trouvés...</div>
         {% endif %}
         {% if app.user and is_granted('ROLE_ADMIN') %}
-            <a href="{{ path('admin_produit_add') }}"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Add produit</button></a>
+            <a href="{{ path('admin_produit_add') }}"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Ajouter produit</button></a>
         {% endif %}
     </div>
  
