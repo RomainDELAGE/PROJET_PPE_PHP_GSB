@@ -7,7 +7,7 @@ use PPE_PHP_GSB\Domain\Produit;
 class ProduitDAO extends DAO
 {
     /**
-     * Retourne une liste de l'ensemble des produits de la table produit.
+     * Retourne une liste de l'ensemble des produits de la table produit hormis ceux qui ont une dateSuppression.
      *
      * @return array une liste de tous les produits.
      */
@@ -25,7 +25,7 @@ class ProduitDAO extends DAO
     }
 
       /**
-         * Return a list of all produits, sorted by date (most recent first).
+         * Retourne une liste de produits donc l’idFamille correspond à celui envoyé en paramètre et dont le champ dateSuppression est null.
          *
          * @return array A list of produit of a famille.
          */
@@ -61,7 +61,7 @@ class ProduitDAO extends DAO
     }
 
     /**
-     * Saves an produit into the database.
+     * Sauvegarde le produit récupéré dans la base s’il existe déjà elle le met à jour.
      *
      * @param \PPE_PHP_GSB\Domain\produit $produit The produit to save
      */

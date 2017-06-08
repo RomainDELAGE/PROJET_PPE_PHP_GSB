@@ -7,9 +7,9 @@ use PPE_PHP_GSB\Domain\Famille;
 class FamilleDAO extends DAO
 {
     /**
-     * Return a list of all familles, sorted by date (most recent first).
+     * retourne une liste comportant l'ensemble des familles
      *
-     * @return array A list of all familles.
+     * @return array Une liste de toutes les familles.
      */
     public function findAll() {
         $sql = "select * from famille order by id desc";
@@ -25,9 +25,9 @@ class FamilleDAO extends DAO
     }
 
     /**
-     * Returns an product matching the supplied id.
+     * Retourne un produit en fonction de son id.
      *
-     * @param integer $id The product id.
+     * @param integer $id id du produit.
      *
      * @return \PPE_PHP_GSB\Domain\famille|throws an exception if no matching product is found
      */
@@ -42,7 +42,7 @@ class FamilleDAO extends DAO
     }
 
     /**
-     * Saves an product into the database.
+     * Sauvegarde un produit dans la base de données.
      *
      * @param \PPE_PHP_GSB\Domain\Famille $famille The famille to save
      */
@@ -67,7 +67,7 @@ class FamilleDAO extends DAO
     /**
      * Removes an famille from the database.
      *
-     * @param integer $id The famille id.
+     * @param integer $id l'id de la famille.
      */
     public function delete($id) {
         // Delete the famille
@@ -75,9 +75,9 @@ class FamilleDAO extends DAO
     }
 
     /**
-     * Creates an Famille object based on a DB row.
+     * Crée une famille à partir d'une ligne de la base.
      *
-     * @param array $row The DB row containing Famille data.
+     * @param array $row la ligne de la base contenant la famille.
      * @return \PPE_PHP_GSB\Domain\Famille
      */
     protected function buildDomainObject($row) {
